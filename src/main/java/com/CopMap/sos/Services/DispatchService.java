@@ -36,6 +36,7 @@ public class DispatchService {
 
     @Transactional
     public List<Dispatch> handleSosAlert(String officerId, double lat, double lng, String type) {
+        log.info("🚨 SEARCHING FOR SOS: Lat = {}, Lng = {} within {} km", lat, lng, DISPATCH_RADIUS_KM);
         Alert alert = new Alert();
         alert.setTriggeringOfficerId(officerId);
         alert.setLatitude(lat);
@@ -86,20 +87,30 @@ public class DispatchService {
     }
 
     public Map<String, Point> getAllActiveLocations() {
-        Set<String> officerIds = redisTemplate.opsForZSet().range(REDIS_GEO_KEY, 0, -1);
+        Point centerOfPune = new Point(73.8560, 18.5200);
+        Circle searchArea = new Circle(centerOfPune, new Distance(100, Metrics.KILOMETERS));
 
-        Map<String, Point> locations = new HashMap<>();
+        // --- THE FIX IS THIS LINE ---
+        // We explicitly tell Redis to include the coordinate data in the response
+        RedisGeoCommands.GeoRadiusCommandArgs args =
+                RedisGeoCommands.GeoRadiusCommandArgs.newGeoRadiusArgs().includeCoordinates();
 
-        if (officerIds != null && !officerIds.isEmpty()) {
-            List<Point> points = redisTemplate.opsForGeo()
-                    .position(REDIS_GEO_KEY, officerIds.toArray(new String[0]));
+        // Pass the 'args' into the radius search
+        GeoResults<RedisGeoCommands.GeoLocation<String>> results =
+                redisTemplate.opsForGeo().radius(REDIS_GEO_KEY, searchArea, args);
 
-            int index = 0;
-            for (String id : officerIds) {
-                locations.put(id, points.get(index));
-                index++;
+        Map<String, Point> activeOfficers = new HashMap<>();
+        if (results != null) {
+            for (GeoResult<RedisGeoCommands.GeoLocation<String>> result : results) {
+                String officerId = result.getContent().getName();
+                Point location = result.getContent().getPoint();
+
+                // Extra safety check just in case
+                if (location != null) {
+                    activeOfficers.put(officerId, location);
+                }
             }
         }
-        return locations;
+        return activeOfficers;
     }
 }
