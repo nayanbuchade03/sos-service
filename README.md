@@ -70,7 +70,7 @@ CopMap provides a structured backend to:
 The system utilizes a hybrid datastore approach. **Redis** handles the volatile, high-throughput ingestion of mobile GPS pings, while **PostgreSQL** acts as the complete record for shift planning and dispatch audit trails.
 
 <div align="center">
-  <img src="assets/architecture.png" alt="System Architecture Diagram" width="90%">
+  <img src="assets/Architecture.png" alt="System Architecture Diagram" width="90%">
 </div>
 
 
