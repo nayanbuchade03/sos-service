@@ -36,7 +36,7 @@ public class DispatchService {
 
     @Transactional
     public List<Dispatch> handleSosAlert(String officerId, double lat, double lng, String type) {
-        log.info("🚨 SEARCHING FOR SOS: Lat = {}, Lng = {} within {} km", lat, lng, DISPATCH_RADIUS_KM);
+        log.info(" SEARCHING FOR SOS: Lat = {}, Lng = {} within {} km", lat, lng, DISPATCH_RADIUS_KM);
         Alert alert = new Alert();
         alert.setTriggeringOfficerId(officerId);
         alert.setLatitude(lat);
@@ -47,7 +47,7 @@ public class DispatchService {
 
         Circle radius = new Circle(new Point(lng, lat), new Distance(DISPATCH_RADIUS_KM, Metrics.KILOMETERS));
         RedisGeoCommands.GeoRadiusCommandArgs args = RedisGeoCommands.GeoRadiusCommandArgs.newGeoRadiusArgs()
-                .includeDistance().sortAscending().limit(5); // Get closest 5 officers
+                .includeDistance().sortAscending().limit(5);
 
         GeoResults<RedisGeoCommands.GeoLocation<String>> nearbyOfficers =
                 redisTemplate.opsForGeo().radius(REDIS_GEO_KEY, radius, args);
@@ -90,12 +90,9 @@ public class DispatchService {
         Point centerOfPune = new Point(73.8560, 18.5200);
         Circle searchArea = new Circle(centerOfPune, new Distance(100, Metrics.KILOMETERS));
 
-        // --- THE FIX IS THIS LINE ---
-        // We explicitly tell Redis to include the coordinate data in the response
         RedisGeoCommands.GeoRadiusCommandArgs args =
                 RedisGeoCommands.GeoRadiusCommandArgs.newGeoRadiusArgs().includeCoordinates();
 
-        // Pass the 'args' into the radius search
         GeoResults<RedisGeoCommands.GeoLocation<String>> results =
                 redisTemplate.opsForGeo().radius(REDIS_GEO_KEY, searchArea, args);
 
@@ -105,7 +102,6 @@ public class DispatchService {
                 String officerId = result.getContent().getName();
                 Point location = result.getContent().getPoint();
 
-                // Extra safety check just in case
                 if (location != null) {
                     activeOfficers.put(officerId, location);
                 }

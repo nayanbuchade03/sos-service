@@ -264,7 +264,7 @@ To run the full stack locally (Postgres, Redis, and the Spring Boot App), follow
 
     If you need to clear the active officers from the map during testing, run this command to flush the Redis cache:
 
-    docker exec -it copmap-redis redis-cli FLUSHALL
+    docker exec -it (redis container ID) redis-cli FLUSHALL
 
 5. Running frontend:
 

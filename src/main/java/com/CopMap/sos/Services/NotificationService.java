@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class NotificationService {
 
-    // Spring Boot automatically injects these from application.properties
     @Value("${twilio.account-sid}")
     private String accountSid;
 
@@ -42,8 +41,8 @@ public class NotificationService {
             );
 
             Message message = Message.creator(
-                    new PhoneNumber(toNumber),   // To your verified mobile
-                    new PhoneNumber(fromNumber), // From your Twilio trial number
+                    new PhoneNumber(toNumber),
+                    new PhoneNumber(fromNumber),
                     messageBody
             ).create();
 

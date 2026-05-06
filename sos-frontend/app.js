@@ -16,7 +16,22 @@ class CommandCenter {
         this.map = L.map('map').setView([18.5200, 73.8560], 14);
         L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png').addTo(this.map);
         this.alertLayer = L.layerGroup().addTo(this.map);
+
+        this.radarCircle = L.circle(this.map.getCenter(), {
+            color: '#4ade80',
+            fillColor: '#4ade80',
+            fillOpacity: 0.07,
+            radius: 5000,
+            dashArray: '10, 10',
+            interactive: false
+        }).addTo(this.map);
+
+        this.map.on('move', () => {
+            this.radarCircle.setLatLng(this.map.getCenter());
+        });
+        
     }
+    
 
     bindEvents() {
         document.getElementById('btn-sos').addEventListener('click', () => this.handleSOS());
@@ -63,7 +78,7 @@ class CommandCenter {
     async handleSOS() {
         const center = this.map.getCenter();
         this.alertLayer.clearLayers();
-        this.logToFeed("🚨 SOS BROADCAST INITIATED", "var(--danger)");
+        this.logToFeed(" SOS BROADCAST INITIATED", "var(--danger)");
 
         try {
             const dispatches = await CopService.triggerEmergency(center.lat, center.lng);
