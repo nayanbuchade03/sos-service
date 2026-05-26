@@ -18,7 +18,7 @@
 
 ##  Problem Understanding
 
-CopMap is a backend system designed to support two critical police operations: **Patrolling** and **Nakabandi/Bandobast**.  
+In the today's world we can see a lot of crime and riots takes place. It becomes difficult for police officers to handle each and every operation with minute detail and management. CopMap is a backend system designed to support two critical police operations: **Patrolling** and **Nakabandi/Bandobast**.  
 It models these as real-world workflows involving planning, execution, monitoring, and reporting.
 CopMap provides a structured backend to:
 - Plan operations for specific objectives and timelines  
@@ -192,11 +192,12 @@ In the above repository, I have implemented SOS alert system, considering the Sp
 
 ## Trade-offs
 
-1. **Synchronous Processing**: While providing response to the alert, handleSosAlert returns the List of Dispatched officers. Here API request is waiting for database to save and Twilio to send SMS before responding to user. But Twilio API is slow, which results in User to hang up even though this Synchronus proccessing is immidate.
-
+1. **Synchronous Processing**: While providing response to the alert, handleSosAlert returns the List of Dispatched officers. Here API request is waiting for database to save and Twilio to send SMS before responding to user. But Twilio API is slow, which results in User to hang up even though this Synchronus proccessing is immediate.
     So, we use Asynchrounous processing(@Async) to dispatch SMS.
 
-2. **WebSockets:** WebSockets requires maintaining persistent, stateful connections on the server, which complicates scaling. REST APIs are stateless and much easier to build and test.
+2. **WebSockets:** Reason behind using Rest API over webSokets is, WebSockets requires maintaining persistent, stateful connections on the server, which complicates scaling. REST APIs are stateless and much easier to build and test.
+
+3. **PostgreSQL and Not MongoDB:** Police records are highly relational and structured. Also they have zero tolerance for partial data failures. So, postgreSQL takes advantage over mongoDB. As mongoDB is good with unstructured and flexible data (like social media post), it is consisdered as less reliable Database for the project.
 
 ## Implemented
 1. A clean architecture with separation between DTOs, Entities, Controllers and Services.

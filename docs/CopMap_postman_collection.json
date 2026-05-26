@@ -1,0 +1,286 @@
+{
+  "info": {
+    "_postman_id": "d558d109-96a9-4d5b-8ded-0695c6b07ea4",
+    "name": "CopMap Sos Part 1",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54305582",
+    "_collection_link": "https://go.postman.co/collection/54305582-d558d109-96a9-4d5b-8ded-0695c6b07ea4?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "ofc-101",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \r\n    \"officerId\": \"OFC-101\", \r\n    \"lat\": 18.5204, \r\n    \"lng\": 73.8567 \r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/cop/place-location",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "cop",
+            "place-location"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ofc-111 within 5 km",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \r\n    \"officerId\": \"OFC-111\", \r\n    \"lat\": 18.5934, \r\n    \"lng\": 73.8764 \r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/copmap/place-location",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "copmap",
+            "place-location"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ofc-121",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \r\n    \"officerId\": \"OFC-121\", \r\n    \"lat\": 19.5934, \r\n    \"lng\": 73.7764 \r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/copmap/place-location",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "copmap",
+            "place-location"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ofc-131",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \r\n    \"officerId\": \"OFC-131\", \r\n    \"lat\": 19.5954, \r\n    \"lng\": 72.7704 \r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/copmap/place-location",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "copmap",
+            "place-location"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ofc-141 within 5 km",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \r\n    \"officerId\": \"OFC-141\", \r\n    \"lat\": 18.5910, \r\n    \"lng\": 73.8702\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/copmap/place-location",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "copmap",
+            "place-location"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ofc-151 within 5 km",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \r\n    \"officerId\": \"OFC-151\", \r\n    \"lat\": 18.5939, \r\n    \"lng\": 73.8704 \r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/copmap/place-location",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "copmap",
+            "place-location"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get all ofc id's",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/copmap/locations",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "copmap",
+            "locations"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Sos alert",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"officerId\": \"OFC-999\", \r\n  \"lat\": 18.5900, \r\n  \"lng\": 73.8700, \r\n  \"type\": \"RIOT\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/alerts/sos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "alerts",
+            "sos"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

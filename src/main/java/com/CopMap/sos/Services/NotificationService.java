@@ -46,7 +46,7 @@ public class NotificationService {
                     messageBody
             ).create();
 
-            log.info("✅ Real SMS sent successfully! Twilio SID: {}", message.getSid());
+            log.info("Real SMS sent successfully! Twilio SID: {}", message.getSid());
 
         } catch (Exception e) {
             log.error("Failed to send Twilio SMS", e);
