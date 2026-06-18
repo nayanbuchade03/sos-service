@@ -1,5 +1,5 @@
 <div align="center">
-  <h1> CopMap: SOS  </h1>
+  <h1> SOS Service  </h1>
   <p>
     <b>A full featured SOS backend service.</b>
   </p>
