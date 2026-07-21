@@ -21,7 +21,7 @@ public class DispatchController {
 
     private final DispatchService dispatchService;
 
-    @PostMapping("/copmap/place-location")
+    @PostMapping("/alert/place-location")
     public ResponseEntity<String> placeLocation(@RequestBody LocationPayload payload) {
         dispatchService.placeOfficerLocation(payload.getOfficerId(), payload.getLat(), payload.getLng());
         return ResponseEntity.ok("Location placed in Redis");
@@ -35,7 +35,7 @@ public class DispatchController {
         return ResponseEntity.ok(dispatches);
     }
 
-    @GetMapping("/copmap/locations")
+    @GetMapping("/alert/locations")
     public ResponseEntity<Map<String, Point>> getAllLocations() {
         return ResponseEntity.ok(dispatchService.getAllActiveLocations());
     }
