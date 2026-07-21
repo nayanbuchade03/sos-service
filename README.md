@@ -18,7 +18,7 @@
 
 ##  Problem Understanding
 
-In the today's world we can see a lot of crime and riots takes place. It becomes difficult for police officers to handle each and every operation with minute detail and management. SOS alert system is a backend system designed to support two critical police operations: **Patrolling** and **Nakabandi/Bandobast**.  
+In the today's world we can see a lot of crime and riots takes place. It becomes difficult for police officers to handle each and every operation with minute detail and management. SOS alert system is a backend system designed to support two critical police operations: **Patrolling** and **Nakabandi/Bandobast**.
 It models these as real-world workflows involving planning, execution, monitoring, and reporting.
 SOS alert system provides a structured backend to:
 - Plan operations for specific objectives and timelines  
